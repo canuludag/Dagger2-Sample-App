@@ -2,4 +2,8 @@
     <string name="app_name">Dagger2 - News App</string>
     <string name="app_name_beta">Beta - Dagger2 - News App</string>
     <string name="app_name_debug">Debug - Dagger2 - News App</string>
+    <string name="editext_hint_username">Username</string>
+    <string name="edittext_hint_password">Password</string>
+    <string name="btn_login">Login</string>
+    <string name="tv_login_info_text">This is a mock login. Enter whatever you want.</string>
 </resources>
