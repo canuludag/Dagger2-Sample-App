@@ -14,9 +14,10 @@ public class NewsApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        // Initialize Dagger App Component
+        // Initialize Dagger App Component and add modules
         mNewsApplicationComponent = DaggerNewsApplicationComponent.builder()
                 .newsApplicationModule(new NewsApplicationModule(this))
+                .sharedPrefsModule(new SharedPrefsModule())
                 .build();
     }
 

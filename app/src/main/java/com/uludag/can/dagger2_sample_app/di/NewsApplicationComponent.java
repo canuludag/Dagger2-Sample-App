@@ -1,5 +1,6 @@
 package com.uludag.can.dagger2_sample_app.di;
 
+import com.uludag.can.dagger2_sample_app.root.SharedPrefsModule;
 import com.uludag.can.dagger2_sample_app.ui.newslist.NewsListActivity;
 
 import javax.inject.Singleton;
@@ -7,9 +8,10 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 @Singleton
-@Component(modules = {NewsApplicationModule.class})
+@Component(modules = {NewsApplicationModule.class, SharedPrefsModule.class})
 public interface NewsApplicationComponent {
 
+    // Injection targets
     void inject(NewsListActivity target);
 
 }

@@ -21,12 +21,14 @@ public class NewsApplicationModule {
     @Singleton
     @Provides
     public NewsApplication provideApp() {
+        // Provides the application
         return mNewsApplication;
     }
 
     @Singleton
     @Provides
     public Context provideContext() {
+        // Provides the context
         return mNewsApplication.getApplicationContext();
     }
 
