@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.uludag.can.dagger2_sample_app.R;
 import com.uludag.can.dagger2_sample_app.model.Article;
+import com.uludag.can.dagger2_sample_app.utils.DateConverter;
 
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsLi
 
         // Set the texts
         holder.cardTitleTextView.setText(newsArticle.getTitle());
-        holder.cardTimeTextView.setText(newsArticle.getPublishedAt());
+        holder.cardTimeTextView.setText(DateConverter.formatNewsApiDate(newsArticle.getPublishedAt()));
         holder.cardContentTextView.setText(newsArticle.getDescription());
 
     }

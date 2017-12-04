@@ -21,7 +21,7 @@ Dagger Modules Created For This Project
 
 Demo
 ----
-![](./art/Screenshot_20171204-135245.png)
+![](./art/login_screen.png)  ![](./art/news_list_screen.png)
 
 Developed By
 ---------------
