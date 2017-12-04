@@ -1,8 +1,8 @@
-# Dagger2-Sample-App
+Dagger2-Sample-App
 --------------------
 This application is a sample for using [Dagger 2][1] Dependency Injection Library. Main goal is to demonstrate how to use Dagger 2 in a real application scenario. For this purpose I used NewsApi.org API and created a small news listing application. The API key that used in this project was deprecated and you have to get your own API key from NewsApi.org in order to fetch news articles.
 
-## Libraries Used In This Project
+Libraries Used In This Project
 ------------------------------------
 Alongside the Dagger 2 framework, I also used several frameworks such as ButterKnife for view binding and Retrofit for networking operations. All can be found in gradle files. Here is the list:
 * [Dagger][1]
@@ -10,7 +10,7 @@ Alongside the Dagger 2 framework, I also used several frameworks such as ButterK
 * [Retrofit][3]
 * [Glide][4]
 
-## Modules Created For This Project
+Modules Created For This Project
 -----------------------------------
 * **NewsApplicationModule**
     * Provides Application Context
@@ -19,11 +19,11 @@ Alongside the Dagger 2 framework, I also used several frameworks such as ButterK
 * **NewsApiModule**
     * Provides Retrofit api service
 
-## Developed By
+Developed By
 ---------------
 * Can Uludağ  - https://www.linkedin.com/in/canuludag/
  
-## License
+License
 ----------
     Copyright 2017 Can Uludağ
 
