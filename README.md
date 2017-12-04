@@ -10,7 +10,7 @@ Alongside the Dagger 2 framework, I also used several frameworks such as ButterK
 * [Retrofit][3]
 * [Glide][4]
 
-Modules Created For This Project
+Dagger Modules Created For This Project
 -----------------------------------
 * **NewsApplicationModule**
     * Provides Application Context
