@@ -1,6 +1,8 @@
 package com.uludag.can.dagger2_sample_app.ui.newslist;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.uludag.can.dagger2_sample_app.R;
+import com.uludag.can.dagger2_sample_app.listeners.NewsListCardOnClickListener;
 import com.uludag.can.dagger2_sample_app.model.Article;
 import com.uludag.can.dagger2_sample_app.model.ArticlesResponse;
 import com.uludag.can.dagger2_sample_app.networking.NewsApiService;
@@ -27,7 +30,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class NewsListActivity extends AppCompatActivity {
+public class NewsListActivity extends AppCompatActivity implements NewsListCardOnClickListener{
 
     @BindView(R.id.news_list_container)
     RelativeLayout newsListContainer;
@@ -66,7 +69,7 @@ public class NewsListActivity extends AppCompatActivity {
 
     private void setAdapterForRecyclerView(List<Article> articles) {
 
-        mNewsListAdapter = new NewsListAdapter(articles);
+        mNewsListAdapter = new NewsListAdapter(articles, this);
         newsListRecyclerView.setAdapter(mNewsListAdapter);
 
     }
@@ -114,5 +117,19 @@ public class NewsListActivity extends AppCompatActivity {
 
     private Snackbar createSnackBar(String message) {
         return Snackbar.make(newsListContainer, message, Snackbar.LENGTH_LONG);
+    }
+
+    @Override
+    public void onCardClick(final Article selectedArticle) {
+        Snackbar cardClickSnackbar = createSnackBar(selectedArticle.getTitle());
+        cardClickSnackbar.setAction("Go to website", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(selectedArticle.getUrl()));
+                startActivity(i);
+            }
+        });
+        cardClickSnackbar.show();
     }
 }

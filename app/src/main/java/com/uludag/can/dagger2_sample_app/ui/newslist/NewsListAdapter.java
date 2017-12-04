@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.uludag.can.dagger2_sample_app.R;
+import com.uludag.can.dagger2_sample_app.listeners.NewsListCardOnClickListener;
 import com.uludag.can.dagger2_sample_app.model.Article;
 import com.uludag.can.dagger2_sample_app.utils.DateConverter;
 
@@ -21,9 +22,11 @@ import butterknife.ButterKnife;
 public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsListViewHolder> {
 
     private List<Article> mArticles;
+    private NewsListCardOnClickListener mListener;
 
-    public NewsListAdapter(List<Article> articles) {
+    public NewsListAdapter(List<Article> articles, NewsListCardOnClickListener listener) {
         mArticles = articles;
+        mListener = listener;
     }
 
     @Override
@@ -50,6 +53,13 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsLi
         holder.cardTitleTextView.setText(newsArticle.getTitle());
         holder.cardTimeTextView.setText(DateConverter.formatNewsApiDate(newsArticle.getPublishedAt()));
         holder.cardContentTextView.setText(newsArticle.getDescription());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onCardClick(newsArticle);
+            }
+        });
 
     }
 
