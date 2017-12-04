@@ -2,23 +2,29 @@ package com.uludag.can.dagger2_sample_app.ui.newslist;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.uludag.can.dagger2_sample_app.R;
 import com.uludag.can.dagger2_sample_app.model.Article;
+import com.uludag.can.dagger2_sample_app.model.ArticlesResponse;
+import com.uludag.can.dagger2_sample_app.networking.NewsApiService;
 import com.uludag.can.dagger2_sample_app.root.NewsApplication;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class NewsListActivity extends AppCompatActivity {
@@ -32,8 +38,11 @@ public class NewsListActivity extends AppCompatActivity {
 
     @Inject
     Context mContext;
+    @Inject
+    NewsApiService mNewsApiService;
 
     private List<Article> mArticles;
+    private NewsListAdapter mNewsListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +54,6 @@ public class NewsListActivity extends AppCompatActivity {
         ((NewsApplication) getApplication()).getNewsApplicationComponent().inject(this);
 
         setupRecyclerView();
-        setAdapterForRecyclerView();
         getArticles();
 
     }
@@ -56,18 +64,55 @@ public class NewsListActivity extends AppCompatActivity {
     }
 
 
-    private void setAdapterForRecyclerView() {
+    private void setAdapterForRecyclerView(List<Article> articles) {
 
-        NewsListAdapter newsListAdapter = new NewsListAdapter(mArticles);
-        newsListRecyclerView.setAdapter(newsListAdapter);
+        mNewsListAdapter = new NewsListAdapter(articles);
+        newsListRecyclerView.setAdapter(mNewsListAdapter);
 
     }
 
     private void getArticles() {
 
-        // Initialize empty list of articles
-        mArticles = new ArrayList<>();
+        mNewsApiService.getArticles("techcrunch").enqueue(new Callback<ArticlesResponse>() {
+            @Override
+            public void onResponse(Call<ArticlesResponse> call, Response<ArticlesResponse> response) {
+                ArticlesResponse articlesResponse = response.body();
 
+                if (articlesResponse != null) {
+                    mArticles = articlesResponse.getArticles();
+                    setAdapterForRecyclerView(mArticles);
+                    newsListProgressbar.setVisibility(View.GONE);
+                } else {
+                    Snackbar errorSnackBar = createSnackBar("An error occured");
+                    errorSnackBar.setAction("Retry", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            getArticles();
+                        }
+                    });
 
+                    errorSnackBar.show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ArticlesResponse> call, Throwable t) {
+                Snackbar errorSnackBar = createSnackBar("An error occured");
+                errorSnackBar.setAction("Retry", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getArticles();
+                    }
+                });
+
+                errorSnackBar.show();
+            }
+        });
+
+    }
+
+    private Snackbar createSnackBar(String message) {
+        return Snackbar.make(newsListContainer, message, Snackbar.LENGTH_LONG);
     }
 }

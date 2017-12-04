@@ -56,11 +56,13 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsLi
     public int getItemCount() {
         if (mArticles != null && mArticles.size() > 0) {
             return mArticles.size();
+        } else {
+            return 0;
+
         }
-        return 0;
     }
 
-    public class NewsListViewHolder extends RecyclerView.ViewHolder{
+    public class NewsListViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.card_news_image)
         ImageView cardImageView;
