@@ -19,6 +19,10 @@ Dagger Modules Created For This Project
 * **NewsApiModule**
     * Provides Retrofit api service
 
+Demo
+----
+![](./art/Screenshot_20171204-135245.png)
+
 Developed By
 ---------------
 * Can Uludağ  - https://www.linkedin.com/in/canuludag/
