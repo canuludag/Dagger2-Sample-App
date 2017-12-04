@@ -22,7 +22,7 @@ import butterknife.OnClick;
 
 public class LoginActivity extends AppCompatActivity {
 
-    @BindView(R.id.container)
+    @BindView(R.id.login_container)
     ConstraintLayout container;
     @BindView(R.id.et_username)
     TextInputEditText etUsername;
@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
-        // Initialize injection
+        // Initialize injection for this activity
         ((NewsApplication) getApplication()).getNewsApplicationComponent().inject(this);
 
         // Check if the user logged in before or not
