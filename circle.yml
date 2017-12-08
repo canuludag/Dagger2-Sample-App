@@ -7,7 +7,7 @@ machine:
 
 checkout:
    post:
-        - cp -r licenses/. $ANDROID_HOME/licenses
+        - cp -r licenses/. /usr/local/android-sdk-linux/licenses
 
 general:
     artifacts:
