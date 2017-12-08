@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/canuludag/Dagger2-Sample-App.svg?style=shield)](https://circleci.com/gh/canuludag/Dagger2-Sample-App)
+
 Dagger2-Sample-App
 --------------------
 This application is a sample for using [Dagger 2][1] Dependency Injection Library. Main goal is to demonstrate how to use Dagger 2 in a real application scenario. For this purpose I used NewsApi.org API and created a small news listing application. The API key that used in this project was deprecated and you have to get your own API key from NewsApi.org in order to fetch news articles.
