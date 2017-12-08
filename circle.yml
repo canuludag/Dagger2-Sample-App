@@ -1,14 +1,18 @@
 #
 # Build configuration for Circle CI
 #
+machine:
+    environment:
+        ANDROID_HOME: /usr/local/android-sdk-linux
+
+checkout:
+   post:
+        - cp -r licenses/. $ANDROID_HOME/licenses
 
 general:
     artifacts:
         - /home/ubuntu/Dagger2SampleApp/app/build/outputs/apk/
 
-machine:
-    environment:
-        ANDROID_HOME: /usr/local/android-sdk-linux
 
 dependencies:
     override:
