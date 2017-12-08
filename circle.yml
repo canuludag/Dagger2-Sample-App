@@ -5,10 +5,6 @@ machine:
     environment:
         ANDROID_HOME: /usr/local/android-sdk-linux
 
-checkout:
-   post:
-        - cp -r licenses/. /usr/local/android-sdk-linux/licenses
-
 general:
     artifacts:
         - /home/ubuntu/Dagger2SampleApp/app/build/outputs/apk/
