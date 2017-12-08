@@ -24,9 +24,13 @@ jobs:
       - run:
           name: Run Tests
           command: ./gradlew lint test
+          name: Initial build
+          command: ./gradlew clean assembleDebug
       - store_artifacts:
           path: app/build/reports
           destination: reports
+          path: app/build/outputs/apk/
+          destination: apks/
       - store_test_results:
           path: app/build/test-results
 
