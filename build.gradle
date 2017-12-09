@@ -26,8 +26,9 @@ ext {
     APP_NAME_DEBUG = "@string/app_name_debug"
 
     minSdkVersion = 21
-    compileSdkVersion = 26
-    supportLibraryVersion = '26.1.0'
+    compileSdkVersion = 27
+    targetSdkVersion = 27
+    supportLibraryVersion = '27.0.2'
     constraintLayoutVersion = '1.0.2'
     junitVersion = '4.12'
     butterKnifeVersion = '8.8.1'

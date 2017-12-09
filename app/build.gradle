@@ -5,7 +5,7 @@ android {
     defaultConfig {
         applicationId "com.uludag.can.dagger2_sample_app"
         minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion 26
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
