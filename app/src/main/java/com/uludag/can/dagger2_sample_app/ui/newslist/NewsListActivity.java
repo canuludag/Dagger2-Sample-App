@@ -4,13 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 
 import com.uludag.can.dagger2_sample_app.R;
 import com.uludag.can.dagger2_sample_app.listeners.NewsListCardOnClickListener;
@@ -33,7 +33,7 @@ import retrofit2.Response;
 public class NewsListActivity extends AppCompatActivity implements NewsListCardOnClickListener{
 
     @BindView(R.id.news_list_container)
-    RelativeLayout newsListContainer;
+    ConstraintLayout newsListContainer;
     @BindView(R.id.newslist_recyclerview)
     RecyclerView newsListRecyclerView;
     @BindView(R.id.news_list_progressbar)
@@ -65,7 +65,6 @@ public class NewsListActivity extends AppCompatActivity implements NewsListCardO
         newsListRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         newsListRecyclerView.setHasFixedSize(true);
     }
-
 
     private void setAdapterForRecyclerView(List<Article> articles) {
 
