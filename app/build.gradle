@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
 
+def keyPropertiesFile = rootProject.file("key.properties")
+def keyProperties = new Properties()
+keyProperties.load(new FileInputStream(keyPropertiesFile))
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
@@ -14,7 +18,6 @@ android {
 
         debug {
             buildConfigField "String", "BASE_URL", "\"https://newsapi.org/v2/\""
-            buildConfigField "String", "API_KEY", "\"23e3a72b61b948de85b35871e85f6677\""
             minifyEnabled false
             debuggable true
             applicationIdSuffix ".debug"
@@ -29,7 +32,6 @@ android {
 
         release {
             buildConfigField "String", "BASE_URL", "\"https://newsapi.org/v2/\""
-            buildConfigField "String", "API_KEY", "\"23e3a72b61b948de85b35871e85f6677\""
             minifyEnabled true
             debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -40,6 +42,10 @@ android {
                     roundIcon: "@mipmap/ic_launcher_round"
             ]
         }
+    }
+
+    buildTypes.each {
+        it.buildConfigField 'String', 'NEWS_API_KEY', keyProperties['api_key']
     }
 }
 

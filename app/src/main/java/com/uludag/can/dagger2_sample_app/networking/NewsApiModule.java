@@ -30,7 +30,7 @@ public class NewsApiModule {
                 Request original = chain.request();
 
                 Request request = original.newBuilder()
-                        .header("X-Api-Key", BuildConfig.API_KEY)
+                        .header("X-Api-Key", BuildConfig.NEWS_API_KEY)
                         .method(original.method(), original.body())
                         .build();
 
