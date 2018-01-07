@@ -61,7 +61,6 @@ dependencies {
 
     // Dagger 2 Dependency Injection
     implementation "com.google.dagger:dagger:$daggerVersion"
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
 
     // ButterKnife
